@@ -2,16 +2,22 @@ version: '3.8'
 
 services:
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
-    # volumes:
-    #   - ./frontend:/frontend
+    volumes:
+      - ./frontend:/frontend
+    environment:
+      - NODE_ENV=development
     networks:
       - app-network
 
   api:
-    build: ./api
+    build: 
+      context: ./api
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
