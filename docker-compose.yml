@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    # volumes:
+    #   - ./frontend:/frontend
+    networks:
+      - app-network
+
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+# version: '3.8'
+
+# services:
+#   frontend:
+#     build: ./frontend
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - ./frontend:/app
+#     networks:
+#       - app-network
+#   api:
+#     build: ./api:app
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#       - ./api:/app
+#     networks:
+#       - app-network
+#   networks:
+#     app-network:
+#       driver: bridge
